@@ -92,3 +92,44 @@ func WithoutBigArray() (int, int) {
 
 	return (b), (c)
 }
+
+func WithBiggerArray() (int, int) {
+
+	a := [1000000]int{}
+	b := 0
+	c := 0
+
+	for i := 0; i < 1000000; i++ {
+
+		a[i] = i
+
+	}
+	for j := 0; j < 1000000; j++ {
+
+		b += a[j]
+		c -= a[j]
+	}
+	return b, c
+}
+
+func WithoutBiggerArray() (int, int) {
+
+	a := make(chan int, 1000000)
+	b := 0
+	c := 0
+	temp := 0
+
+	for i := 0; i < 1000000; i++ {
+
+		a <- i
+	}
+
+	for j := 0; j < 1000000; j++ {
+
+		temp = <-a
+		b += temp
+		c -= temp
+	}
+	return b, c
+
+}

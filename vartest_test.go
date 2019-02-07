@@ -52,6 +52,22 @@ func TestWithoutBigArray(t *testing.T) {
 	}
 }
 
+func TestWithBiggerArray(t *testing.T) {
+
+	a, b := WithBiggerArray()
+	if !(a == 499999500000 && b == -499999500000) {
+		panic("err")
+	}
+}
+
+func TestWithoutBiggerArray(t *testing.T) {
+
+	a, b := WithoutBiggerArray()
+	if !(a == 499999500000 && b == -499999500000) {
+		panic("err")
+	}
+}
+
 func BenchmarkWithVariable(b *testing.B) {
 	// run the function b.N times
 	for n := 0; n < b.N; n++ {
@@ -91,5 +107,19 @@ func BenchmarkWithoutBigArray(b *testing.B) {
 	// run the function b.N times
 	for n := 0; n < b.N; n++ {
 		WithoutBigArray()
+	}
+}
+
+func BenchmarkWithBiggerArray(b *testing.B) {
+	// run the function b.N times
+	for n := 0; n < b.N; n++ {
+		WithBiggerArray()
+	}
+}
+
+func BenchmarkWithoutBiggerArray(b *testing.B) {
+	// run the function b.N times
+	for n := 0; n < b.N; n++ {
+		WithoutBiggerArray()
 	}
 }
